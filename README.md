@@ -1,5 +1,5 @@
 # G_Seis
-Seismic data processing software
+GUI 2D-Seismic data processing software
 
 The main file is G_Seis.m
 The application uses some functions written by other authors. Here those files:
