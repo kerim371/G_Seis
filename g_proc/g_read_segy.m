@@ -223,7 +223,7 @@ if strcmp(handles.r_select,'From binary header')
                 trc_hdr2 = fread(r_fileID,120,'int16',endian);
                 trc_hdr_col = [trc_hdr4; trc_hdr2];
                 trc_hdr = single(trc_hdr_col(ind));
-                trace = ibm2single(fread(r_fileID,trc_hdr(39,k),'uint32=>uint32',endian)); % длина трассы из заголовка трассы
+                trace = ibm2single(fread(r_fileID,trc_hdr(39),'uint32=>uint32',endian)); % длина трассы из заголовка трассы
                 to = trc_hdr(36);
                 pos = ftell(r_fileID);
                 fwrite(s_fileID,[trc_hdr(:); trace(:)],'single');
@@ -342,7 +342,7 @@ elseif strcmp(handles.r_select,'Set manually')
                 trc_hdr2 = fread(r_fileID,120,'int16',endian);
                 trc_hdr_col = [trc_hdr4; trc_hdr2];
                 trc_hdr = single(trc_hdr_col(ind));
-                trace = ibm2single(fread(r_fileID,trc_hdr(39,k),'uint32=>uint32',endian)); % длина трассы из заголовка трассы
+                trace = ibm2single(fread(r_fileID,trc_hdr(39),'uint32=>uint32',endian)); % длина трассы из заголовка трассы
                 to = trc_hdr(36);
                 pos = ftell(r_fileID);
                 fwrite(s_fileID,[trc_hdr(:); trace(:)],'single');

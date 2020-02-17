@@ -3,7 +3,7 @@ handles = guidata(hParent);
 % load input FACTORS
 r_f_fact = load([handles.r_factors_path handles.r_factors_file]);
 r_f_fact = r_f_fact.seismic;
-if ~isfield(r_f_fact,'layers') && ~isfield(r_f_fact,'vel')
+if ~isfield(r_f_fact,'layers') && ~isfield(r_f_fact,'vel') % если это факторы
     r_m_fact = memmapfile([handles.r_factors_path handles.r_factors_file '.bin'],...
         'Format',{'single',[r_f_fact.nh+r_f_fact.ns r_f_fact.ntr],'seis'},'Writable',false);
     % load input SEISMIC
@@ -119,6 +119,10 @@ if ~isfield(r_f_fact,'layers') && ~isfield(r_f_fact,'vel')
         close 'Vel model' % закрыть figure
     end
     figure('Name','Vel model');
+    % tabs
+    tabgp = uitabgroup(gcf,'Position',[.01 .1 .98 .9]);
+    tab1 = uitab(tabgp,'Title','Settings');
+    tab2 = uitab(tabgp,'Title','Options');
 
     % context menu when right click on object
     uic_ax1 = uicontextmenu;
@@ -131,7 +135,7 @@ if ~isfield(r_f_fact,'layers') && ~isfield(r_f_fact,'vel')
     uic_patch.Tag = 'uic_patch';
     uic_line.Tag = 'uic_line';
 
-    subplot(2,1,1);
+    subplot(2,1,1,'Parent',tab1);
     title('Velocity model');
     xlabel('Distance, m'); ylabel('Elevation, m');
     ax1 = gca;
@@ -192,11 +196,16 @@ if ~isfield(r_f_fact,'layers') && ~isfield(r_f_fact,'vel')
         end
     end
     legend(leg_txt,'Tag','line_legend');
-elseif isfield(r_f_fact,'layers') && isfield(r_f_fact,'vel')
+elseif isfield(r_f_fact,'layers') && isfield(r_f_fact,'vel')  % если это модель
     if ~isempty(findobj('Type','figure','Name','Vel model'))
         close 'Vel model' % закрыть figure
     end
     figure('Name','Vel model');
+    
+    % tabs
+    tabgp = uitabgroup(gcf,'Position',[.01 .1 .98 .9]);
+    tab1 = uitab(tabgp,'Title','Settings');
+    tab2 = uitab(tabgp,'Title','Options');
 
     % context menu when right click on object
     uic_ax1 = uicontextmenu;
@@ -209,7 +218,7 @@ elseif isfield(r_f_fact,'layers') && isfield(r_f_fact,'vel')
     uic_patch.Tag = 'uic_patch';
     uic_line.Tag = 'uic_line';
 
-    subplot(2,1,1);
+    subplot(2,1,1,'Parent',tab1);
     title('Velocity model');
     xlabel('Distance, m'); ylabel('Elevation, m');
     ax1 = gca;
@@ -289,9 +298,14 @@ uicontrol(bg1,'Style','radiobutton',...
                   'Position',[60 0 40 20]);
 
 % Create push button SAVE FILE
-btn = uicontrol('Style', 'pushbutton', 'String', 'Save',...
+btn1 = uicontrol('Style', 'pushbutton', 'String', 'Save',...
     'Units','pixels','Position', [10 10 70 30],...
     'Callback', {@save_vel_model,r_f_fact,handles,s,r,v});
+
+% Create push button REGULAR GRID
+btn2 = uicontrol('Style', 'pushbutton', 'String', 'Grid',...
+    'Units','pixels','Position', [220 10 70 30],...
+    'Callback', {@grid_model,r_f_fact,handles,s,r,v,tab2});
 
 % Create child menu items for the uicontextmenu
 uimenu(uic_ax1,'Label','Stop Action','Callback',{@context_menu_fun,[],[]});
@@ -809,3 +823,64 @@ save([handles.s_path handles.s_file '.mat'],'seismic');
 fclose all;
 msgbox(['Saved to: ' handles.s_path handles.s_file],'Success');
 clear;
+
+function grid_model(hObject,eventdata,r_f_fact,handles,s,r,v,tab2)
+prompt = {'dx, m:'; 'dy, m:'};
+dlgtitle = 'Grid parameters';
+dims = [1 25];
+answer = inputdlg(prompt,dlgtitle,dims);
+if isempty(answer)
+    return;
+elseif ~isempty(answer)
+    if isempty(str2num(answer{1})) || isempty(str2num(answer{2}))
+        return;
+    end
+end
+dx = str2num(answer{1});
+dy = str2num(answer{2});
+
+fig = gcf;
+ax1 = findobj(fig,'Type','axes','Tag','ax1');
+ax2 = findobj(fig,'Type','axes','Tag','ax2');
+l_obj = findobj(ax1,'Type','line','Tag','Line_hole_elevation');
+p_obj = findobj(ax1,'Type','patch');
+v_obj = findobj(ax2,'Type','line');
+layers = cell(size(p_obj,1),4);
+vel = cell(size(p_obj,1),1);
+tags = cell(size(p_obj,1),2);
+for n = 1:length(p_obj)
+    pp_obj = findobj(p_obj,'UserData',['Layer ' num2str(n)]);
+    layers{n,1} = pp_obj.Vertices(1:end/2,:);
+    layers{n,2} = pp_obj.Vertices;
+    layers{n,3} = pp_obj.Faces;
+    layers{n,4} = pp_obj.FaceVertexCData;
+    vv_obj = findobj(v_obj,'UserData',['Layer ' num2str(n)]);
+    vel{n} = [vv_obj.XData' vv_obj.YData'];
+    tags{n,1} = pp_obj.Tag;
+    tags{n,2} = vv_obj.Tag;
+end
+hole_elevation = [l_obj.XData' l_obj.YData'];
+
+x = round(min(hole_elevation(:,1))):dx:round(max(hole_elevation(:,1)));
+y = round(max(hole_elevation(:,2))):-dy:round(min(layers{end,1}(:,2)));
+
+[X,Y] = meshgrid(x,y);
+V = NaN(size(X));
+for n = 1:length(p_obj)
+    if n ~= length(p_obj)
+        ind = Y < interp1(layers{n,1}(:,1),layers{n,1}(:,2),x,'linear','extrap') & ...
+            Y >= interp1(layers{n+1,1}(:,1),layers{n+1,1}(:,2),x,'linear','extrap');
+    else
+        ind = Y < interp1(layers{n,1}(:,1),layers{n,1}(:,2),x,'linear','extrap') & ...
+            Y >= y(end);
+    end
+    v = ind.*interp1(layers{n,1}(:,1),layers{n,4}(1:end/2),x,'linear','extrap');
+    
+    V(ind) = v(ind);
+end
+ax3 = axes(tab2);
+imagesc(ax3,x,y,V);
+ax3.YDir = 'normal';
+ax3.FontName = 'Agency FB';
+ax3.Tag = 'ax3';
+

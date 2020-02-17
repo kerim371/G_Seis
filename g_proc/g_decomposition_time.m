@@ -55,6 +55,8 @@ r_xy = r_m.Data.seis(24:25,indL)';
 cdp_xy = r_m.Data.seis(72:73,indL)';
 s_el = r_m.Data.seis(14,indL)';
 r_el = r_m.Data.seis(13,indL)';
+trc_num(:,1) = 1:size(r_m.Data.seis,2);
+trc_num = trc_num(indL);
 
 mat_hrz = load([handles.hrz_path handles.hrz_file]);
 %mat_hrz = matfile([handles.hrz_path handles.hrz_file],'Writable',false);
@@ -72,13 +74,17 @@ for n = 1:length(col_names)
         layer_ind = [layer_ind mat_hrz.hrz(:,n)];
     end
 end
-trc_hdr = trc_hdr(indL,:);
-
 hrz_t = hrz_t(:);
-trc_num = 1:size(r_m.Data.seis,2);
-trc_num = trc_num(:);
-trc_num = trc_num(indL);
-                                              
+
+if strcmp(handles.restr_by_off_picks,'offset')
+    trc_hdr = trc_hdr(indL,:);
+elseif strcmp(handles.restr_by_off_picks,'picks')
+    ind = sum(layer_ind,2) ~= 0;
+    hrz_t = hrz_t(ind,:);
+    hrz_hdr = hrz_hdr(ind,:);
+    layer_ind = layer_ind(ind,:);
+end
+
 [~,ia,ib] = intersect(trc_hdr,hrz_hdr,'rows','stable');
 
 L = L(ia);

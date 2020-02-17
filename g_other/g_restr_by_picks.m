@@ -37,6 +37,7 @@ Ur_dist = sqrt((Ur_xy(:,1)-Do(1)).^2+(Ur_xy(:,2)-Do(2)).^2);
 
 s_dist = sqrt((s_xy(:,1)-Do(1)).^2+(s_xy(:,2)-Do(2)).^2);
 r_dist = sqrt((r_xy(:,1)-Do(1)).^2+(r_xy(:,2)-Do(2)).^2);
+cdp_dist = (r_dist+s_dist)./2;
 
 Uc = rand(length(Ur_dist),1);
 c = Uc(ibs);
@@ -50,12 +51,12 @@ uic_ax = uicontextmenu;
 uic_scatter = uicontextmenu;
 uic_line = uicontextmenu;
 
-scatter(r_dist,hrz_t,[],c,'.','UIContextMenu',uic_scatter,...
-    'ButtonDownFcn',{@highlight_line,s_dist,r_dist,hrz_t});
+scatter(cdp_dist,hrz_t,[],c,'.','UIContextMenu',uic_scatter,...
+    'ButtonDownFcn',{@highlight_line,cdp_dist,s_dist,hrz_t});
 grid on;
 colormap jet;
 title('First break Picks');
-xlabel('Receiver point distance, m'); ylabel('Time, ms');
+xlabel('CMP point distance, m'); ylabel('Time, ms');
 ax = gca;
 ax.FontName = 'Agency FB';
 ax.UIContextMenu = uic_ax;
@@ -63,23 +64,23 @@ ax.UIContextMenu = uic_ax;
 % Create push button SAVE FILE
 btn = uicontrol('Style', 'pushbutton', 'String', 'Save',...
     'Units','pixels','Position', [10 10 70 30],...
-    'Callback', {@save_hrz,handles,mat_hrz,s_dist,r_dist,hrz_t,ib});
+    'Callback', {@save_hrz,handles,mat_hrz,cdp_dist,s_dist,r_dist,hrz_t,ib});
 
 uimenu(uic_ax,'Label','Add Layer','Callback',{@context_menu_fun,uic_ax,uic_scatter,uic_line});
 uimenu(uic_scatter,'Label','Add Layer','Callback',{@context_menu_fun,uic_ax,uic_scatter,uic_line});
 uimenu(uic_line,'Label','Remove Layer','Callback',{@context_menu_fun,uic_ax,uic_scatter,uic_line});
 
-function highlight_line(hObject,eventdata,s_dist,r_dist,hrz_t)
+function highlight_line(hObject,eventdata,cdp_dist,s_dist,hrz_t)
 if eventdata.Button == 1
     ax = gca;
     hold on;
     l_obj = findobj(ax,'Type','line','Tag','Temporal line');
     delete(l_obj);
 
-    r_ind = r_dist==eventdata.IntersectionPoint(1) & hrz_t==eventdata.IntersectionPoint(2);
-    ind = s_dist == min(s_dist(r_ind));
-
-    plot(ax,r_dist(ind),hrz_t(ind),'k','LineWidth',2,'Tag','Temporal line');
+    cdp_ind = cdp_dist==eventdata.IntersectionPoint(1) & hrz_t==eventdata.IntersectionPoint(2);
+    ind = s_dist == min(s_dist(cdp_ind));
+    
+    plot(ax,cdp_dist(ind),hrz_t(ind),'k','LineWidth',2,'Tag','Temporal line');
     hold off;
 end
 
@@ -173,7 +174,7 @@ if eventdata.Button == 1
     hold off;
 end
 
-function save_hrz(hObject,eventdata,handles,mat_hrz,s_dist,r_dist,hrz_t,ib)
+function save_hrz(hObject,eventdata,handles,mat_hrz,cdp_dist,s_dist,r_dist,hrz_t,ib)
 ax = gca;
 l_obj = findobj(ax,'Type','line','Tag','Layer');
 lay_num = zeros(1,length(l_obj));
@@ -181,9 +182,9 @@ for n = 1:length(l_obj)
     lay_num(n) = l_obj(n).UserData;
 end
 [lay_num,i_lay] = sort(lay_num); % sort in increasing layers
-ind = false(length(r_dist),length(l_obj));
+ind = false(length(cdp_dist),length(l_obj));
 for n = 1:length(l_obj)
-    ind(:,n) = inpolygon(r_dist,hrz_t,l_obj(i_lay(n)).XData,l_obj(i_lay(n)).YData);
+    ind(:,n) = inpolygon(cdp_dist,hrz_t,l_obj(i_lay(n)).XData,l_obj(i_lay(n)).YData);
 end
 
 n = 1:size(ind,2)-1;
@@ -191,14 +192,14 @@ N = sum(n);
 n = 2;
 m = 1;
 for k = 1:N % exclude points that are in several polygons and leave them in first
-    r1_min = min(r_dist(ind(:,m)));
-    r1_max = max(r_dist(ind(:,m)));
-    i1 = r_dist >= r1_min & r_dist <= r1_max;
+    cdp1_min = min(cdp_dist(ind(:,m)));
+    cdp1_max = max(cdp_dist(ind(:,m)));
+    i1 = cdp_dist >= cdp1_min & cdp_dist <= cdp1_max;
     
     
-    r2_min = min(r_dist(ind(:,n)));
-    r2_max = max(r_dist(ind(:,n)));
-    i2 = r_dist >= r2_min & r_dist <= r2_max;
+    cdp2_min = min(cdp_dist(ind(:,n)));
+    cdp2_max = max(cdp_dist(ind(:,n)));
+    i2 = cdp_dist >= cdp2_min & cdp_dist <= cdp2_max;
     
     ind(i1 & i2,m) = true;
     if n == size(ind,2)
@@ -219,6 +220,6 @@ col_names = mat_hrz.col_names(:,col_ind);
 hrz = mat_hrz.hrz(:,col_ind);
 col_names(end+1:end+size(ind,2)) = {'Layer'};
 %hrz = [hrz(ib,:) ind];
-hrz = [hrz(ib,:) repmat(1:length(lay_num),length(r_dist),1).*ind];
+hrz = [hrz(ib,:) repmat(1:length(lay_num),length(cdp_dist),1).*ind];
 save([handles.hrz_path handles.hrz_file],'col_names','hrz');
 msgbox(['Horizon file: ' [handles.hrz_path handles.hrz_file] ' updated!'],'Success');
