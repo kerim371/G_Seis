@@ -1,20 +1,17 @@
 # G_Seis
-GUI 2D-Seismic data processing software
+Simple 2D-Seismic data processing GUI application
 
-The main file is G_Seis.m
-The application uses some functions written by other authors. Here those files:
-ibm2single.m (based on the algorithm of function "ibm2num" written by Brian Farrelly https://www.mathworks.com/matlabcentral/fileexchange/53109-seislab-3-02)
-interparc.m (by John D'Errico https://www.mathworks.com/matlabcentral/fileexchange/34874-interparc)
-PlotReduce.m (based on algorithm of Tucker McClure for 1D data https://www.mathworks.com/matlabcentral/fileexchange/40790-plot-big)
-typecastx.m (James Tursa https://www.mathworks.com/matlabcentral/fileexchange/17476-typecast-and-typecastx-c-mex-functions)
+## Functionality
+1) SEGY read/write (reads to binary file of format `single`)
+2) visualize data with three keys sorting
+3) decompose first arrival time picks (or amplitude) according to 2, 3, 4 factor model
+4) interactively build velocity model based on decomposed arrival time picks
+5) perform static, amplitude and spectrum correction (deconvolution)
+6) perform some basic header and data arithmetic
 
+## Usage
+The main file is `G_Seis.m`
 Before running the application you should:
-1 - set path to the root folder and include all the folders inside it
-2 - build mex function in /g_other folder. Commands >> mex -setup and >> mex typecastx.c may help. 
-3 - type in matlab command line: >> G_Seis
-
-REMERMBER! All binary files created with G_Seis is binary data of format single.
-Feel free to contact with me.
-
-Best regards,
-Kerim Khemraev
+1) set path to the root folder and include all the folders inside it
+2) build mex function in /g_other folder. Commands `>> mex -setup` and `>> mex typecastx.c` may help. 
+3) type in matlab command line: `>> G_Seis`
