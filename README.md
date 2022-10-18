@@ -2,6 +2,8 @@
 # G_Seis
 Simple 2D-Seismic data processing GUI application
 
+![G_Seis](Logo.png?raw=true)
+
 ## Functionality
 1) SEGY read/write (reads to binary file of format `single`)
 2) visualize data with three keys sorting
@@ -14,5 +16,5 @@ Simple 2D-Seismic data processing GUI application
 The main file is `G_Seis.m`
 Before running the application you should:
 1) set path to the root folder and include all the folders inside it
-2) build mex function in /g_other folder. Commands `>> mex -setup` and `>> mex typecastx.c` may help
+2) build mex function in /g_other folder. Commands `>> mex -setup` and `>> mex typecastx.c` (or `>> mex g_other/typecastx.c` depending on current path) may help
 3) run the app: `>> G_Seis`
