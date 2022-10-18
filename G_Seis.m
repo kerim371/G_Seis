@@ -1,9 +1,9 @@
 function G_Seis
 % Create a figure
-if ~isempty(findobj('Type','figure','Name','SC Bridge'))
-    close 'SC Bridge' % закрыть figure
+if ~isempty(findobj('Type','figure','Name','G_Seis'))
+    close 'G_Seis' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
-hParent = figure('Name','SC Bridge','NumberTitle','off',...
+hParent = figure('Name','G_Seis','NumberTitle','off',...
     'Position',[200 200 325 460],'ToolBar','none','MenuBar','none','Resize','off');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -46,7 +46,7 @@ uicontrol(p2,'Style', 'pushbutton', 'String', 'SC Apply',...
     'Position', [165 130 150 50],'Callback', {@apply_GUI});
 
 % Create push button 
-uicontrol(p2,'Style', 'pushbutton', 'String', 'SC time Decomposition',...
+uicontrol(p2,'Style', 'pushbutton', 'String', 'SC Time Decomposition',...
     'Position', [5 70 150 50],'Callback', {@decomposition_time_GUI});
 
 % Create push button 
@@ -66,28 +66,28 @@ uicontrol(p2,'Style', 'pushbutton', 'String', 'Plot Data',...
 % pushbutton READ SEGY
 function read_SEGY_GUI(source,event)
 if ~isempty(findobj('Type','figure','Name','Read SEGY'))
-    close 'Read SEGY' % закрыть figure
+    close 'Read SEGY' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 g_read_segyGUI;
 
 % pushbutton WRITE SEGY
 function write_SEGY_GUI(source,event)
 if ~isempty(findobj('Type','figure','Name','SC write SEGY'))
-    close 'SC write SEGY' % закрыть figure
+    close 'SC write SEGY' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 g_write_segyGUI;
 
 % pushbutton READ HORIZON
 function read_hrz_GUI(source,event)
 if ~isempty(findobj('Type','figure','Name','Read Horizon'))
-    close 'Read Horizon' % закрыть figure
+    close 'Read Horizon' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 g_read_hrzGUI;
 
 % pushbutton HEADER MATH
 function header_math_GUI(source,event)
 if ~isempty(findobj('Type','figure','Name','SC header math'))
-    close 'SC header math' % закрыть figure
+    close 'SC header math' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 g_math_headerGUI;
 msgbox(['It is very simple to use. For example, you can ',...
@@ -97,7 +97,7 @@ msgbox(['It is very simple to use. For example, you can ',...
 % pushbutton TRACE MATH
 function trace_math_GUI(source,event)
 if ~isempty(findobj('Type','figure','Name','SC trace math'))
-    close 'SC trace math' % закрыть figure
+    close 'SC trace math' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 g_math_traceGUI;
 msgbox(['It is very simple to use and it provides matlab functionality in accordance with your matlab abilities ',...
@@ -110,56 +110,56 @@ msgbox(['It is very simple to use and it provides matlab functionality in accord
 % pushbutton SCALE
 function scale_GUI(source,event)
 if ~isempty(findobj('Type','figure','Name','SC scale'))
-    close 'SC scale' % закрыть figure
+    close 'SC scale' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 g_scaleGUI;
 
 % pushbutton SC DECOMPOSITION
 function decomposition_GUI(source,event)
 if ~isempty(findobj('Type','figure','Name','SC decomposition'))
-    close 'SC decomposition' % закрыть figure
+    close 'SC decomposition' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 g_decomposition_ampGUI;
 
 % pushbutton SC APPLY
 function apply_GUI(source,event)
 if ~isempty(findobj('Type','figure','Name','SC apply'))
-    close 'SC apply' % закрыть figure
+    close 'SC apply' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 g_applyGUI
 
 % pushbutton SC TIME DECOMPOSITION
 function decomposition_time_GUI(source,event)
 if ~isempty(findobj('Type','figure','Name','SC time decomposition'))
-    close 'SC time decomposition' % закрыть figure
+    close 'SC time decomposition' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 g_decomposition_timeGUI;
 
 % pushbutton SC TIME APPLY
 function apply_time_GUI(source,event)
 if ~isempty(findobj('Type','figure','Name','SC time apply'))
-    close 'SC time apply' % закрыть figure
+    close 'SC time apply' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 g_apply_timeGUI
 
 % pushbutton SC BUILD VEL MODEL
 function build_vel_model_GUI(source,event)
 if ~isempty(findobj('Type','figure','Name','SC build vel model'))
-    close 'SC build vel model' % закрыть figure
+    close 'SC build vel model' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 g_build_vel_modelGUI
 
 % pushbutton SORT TRACES
 function sort_GUI(source,event)
 if ~isempty(findobj('Type','figure','Name','SC sort'))
-    close 'SC sort' % закрыть figure
+    close 'SC sort' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 g_sortGUI;
 
 % pushbutton PARAMETERS TO PLOT
 function plot_GUI(source,event)
 if ~isempty(findobj('Type','figure','Name','Parameters to plot'))
-    close 'Parameters to plot' % закрыть figure
+    close 'Parameters to plot' % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 g_plotGUI;
 msgbox(['You can plot not only seismic-files but factors-files as well. ',...

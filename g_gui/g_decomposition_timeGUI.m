@@ -412,7 +412,7 @@ end
 % EDIT SP XY
 function ed21_sp_xy(hObject, eventdata, hParent)
 ind_sp_xy = str2num(hObject.String);
-if length(ind_sp_xy) == 2 && sum(~isinf(ind_sp_xy) & floor(ind_sp_xy) == ind_sp_xy) == 2 % целые числа
+if length(ind_sp_xy) == 2 && sum(~isinf(ind_sp_xy) & floor(ind_sp_xy) == ind_sp_xy) == 2 % пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     quest = ['Do you want exchange trace header positions 22-' num2str(ind_sp_xy(1)) 'and 23-' num2str(ind_sp_xy(2))];
     answer = questdlg(quest);
     switch answer
@@ -429,7 +429,7 @@ end
 % EDIT RP XY
 function ed22_rp_xy(hObject, eventdata, hParent)
 ind_rp_xy = str2num(hObject.String);
-if length(ind_rp_xy) == 2 && sum(~isinf(ind_rp_xy) & floor(ind_rp_xy) == ind_rp_xy) == 2 % целые числа
+if length(ind_rp_xy) == 2 && sum(~isinf(ind_rp_xy) & floor(ind_rp_xy) == ind_rp_xy) == 2 % пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     quest = ['Do you want exchange trace header positions 24-' num2str(ind_rp_xy(1)) 'and 25-' num2str(ind_rp_xy(2))];
     answer = questdlg(quest);
     switch answer
@@ -446,7 +446,7 @@ end
 % EDIT CDP XY
 function ed23_cdp_xy(hObject, eventdata, hParent)
 ind_cdp_xy = str2num(hObject.String);
-if length(ind_cdp_xy) == 2 && sum(~isinf(ind_cdp_xy) & floor(ind_cdp_xy) == ind_cdp_xy) == 2 % целые числа
+if length(ind_cdp_xy) == 2 && sum(~isinf(ind_cdp_xy) & floor(ind_cdp_xy) == ind_cdp_xy) == 2 % пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     quest = ['Do you want exchange trace header positions 72-' num2str(ind_cdp_xy(1)) 'and 73-' num2str(ind_cdp_xy(2))];
     answer = questdlg(quest);
     switch answer
@@ -463,7 +463,7 @@ end
 % EDIT OFFSET
 function ed24_offset(hObject, eventdata, hParent)
 ind_offset = str2num(hObject.String);
-if length(ind_offset) == 1 && sum(~isinf(ind_offset) & floor(ind_offset) == ind_offset) == 1 % целые числа
+if length(ind_offset) == 1 && sum(~isinf(ind_offset) & floor(ind_offset) == ind_offset) == 1 % пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     quest = ['Do you want exchange trace header positions 72-' num2str(ind_offset) '?'];
     answer = questdlg(quest);
     switch answer
@@ -480,7 +480,7 @@ end
 % EDIT IL XL
 function ed25_il_xl(hObject, eventdata, hParent)
 ind_il_xl = str2num(hObject.String);
-if length(ind_il_xl) == 2 && sum(~isinf(ind_il_xl) & floor(ind_il_xl) == ind_il_xl) == 2 % целые числа
+if length(ind_il_xl) == 2 && sum(~isinf(ind_il_xl) & floor(ind_il_xl) == ind_il_xl) == 2 % пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     quest = ['Do you want exchange trace header positions 74-' num2str(ind_il_xl(1)) 'and 75-' num2str(ind_il_xl(2))];
     answer = questdlg(quest);
     switch answer
@@ -879,7 +879,7 @@ guidata(hParent, handles);
 g_decomposition_time(hParent);
 set(hObject,'str','RUN','backg',[0.94 0.94 0.94])  % Now reset the button features.
 
-% Функция срабатывающая при нажатии на кнопку закрытия программы (крестик)
+% пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 function trc_closereq(hObject, eventdata, hParent, ed25, btn21, btn22)
 if isvalid(hParent)
     handles = guidata(hParent);
@@ -895,7 +895,7 @@ if isvalid(hParent)
 end
 delete(gcf);
 
-% Функция срабатывающая при нажатии на кнопки стрелка влево/вправо
+% пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅ
 function trc_keyPress(hObject, eventdata, hParent, ed25)
 switch eventdata.Key
     case 'leftarrow'

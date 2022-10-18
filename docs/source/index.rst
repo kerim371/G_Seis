@@ -8,11 +8,12 @@ Welcome to G_Seis's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+
+   about
+   api/api
 
 
-
-Indices and tables
+indexes and tables
 ==================
 
 * :ref:`genindex`
