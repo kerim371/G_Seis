@@ -1,4 +1,5 @@
-[![View G_Seis on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://fr.mathworks.com/matlabcentral/fileexchange/71869-g_seis)
+[![][mathworks-fileexchange-img]][mathworks-fileexchange-status]
+[![][docs-dev-img]][docs-dev-status]
 # G_Seis
 Simple 2D-Seismic data processing GUI application
 
@@ -18,3 +19,9 @@ Before running the application you should:
 1) set path to the root folder and include all the folders inside it
 2) build mex function in /g_other folder. Commands `>> mex -setup` and `>> mex typecastx.c` (or `>> mex g_other/typecastx.c` depending on current path) may help
 3) run the app: `>> G_Seis`
+
+[mathworks-fileexchange-img]:https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg
+[mathworks-fileexchange-status]:https://fr.mathworks.com/matlabcentral/fileexchange/71869-g_seis
+
+[docs-dev-img]:https://img.shields.io/badge/docs-dev-blue.svg
+[docs-dev-status]:https://g-seis.readthedocs.io/en/latest/?badge=latest
