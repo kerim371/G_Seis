@@ -67,7 +67,7 @@ r4 = uicontrol(bg1,'Style','radiobutton',...
               
 % Add a text uicontrol to label the slider SAVE FILE
 txt3 = uicontrol('Style','text','Position',[10 320 200 55],'HorizontalAlignment','left',...
-    'String','Write space-delimited row numbers to define column names according to trace headers (push button <Headers>). Write <t> to indicate <time> column.');
+    'String','Space-delimited trace header indexes (push button <Headers> to find indexes needed). Column <t> indicates <time> column.');
 
 % Create EDIT COLUMN NAMES
 ed1 = uicontrol('Style', 'edit', 'String', '6 12 t',...
@@ -172,7 +172,7 @@ for n = 1:length(handles.col_names)
     end
 end
 if isfield(handles,'hrz_table')
-    delete(handles.hrz_table); % удалить таблицу чтобы они не нагромождались
+    delete(handles.hrz_table); % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 end
 handles.hrz_table = uitable(hParent,'Data',hrz,'ColumnName',col_names_table,...
     'Units','Normalized','Position',[0 0 1  0.4]);
@@ -200,7 +200,7 @@ handles = guidata(hParent);
 [trc_hdr_info,~] = g_get_trc_hdr_info;
 f = findobj('Type','figure','Name','Trace headers');
 if ~isempty(f)
-    delete(f) % закрыть figure
+    delete(f) % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 fhP_pos = hParent.Position;
 f_pos = [fhP_pos(1)+fhP_pos(3)+16 fhP_pos(2) 200  fhP_pos(4)];
@@ -215,6 +215,6 @@ uitable(f,'Data',trc_hdr_info(:,1:2),'ColumnName',{'Description';'Abbreviation'}
 function read_hrz_closereq(hObject, eventdata)
 f = findobj('Type','figure','Name','Trace headers');
 if ~isempty(f)
-    delete(f) % закрыть figure
+    delete(f) % пїЅпїЅпїЅпїЅпїЅпїЅпїЅ figure
 end
 delete(gcf);

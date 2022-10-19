@@ -329,7 +329,7 @@ p4 = uipanel('Title','Special Conditions','FontWeight','bold',...
 
 % Add a text uicontrol SPECIAL CONDITION 1
 txt17 = uicontrol('Style','text','HorizontalAlignment','left','BackgroundColor',[0.9 0.91 0.92],...
-    'Position',[310 270 280 30],'String','Smoothed Source and Receiver components are the same. Range of moving average window:');
+    'Position',[310 270 280 30],'String','Smoothed Source and Receiver components are equal. Moving average window length:');
 
 % Create SPECIAL CONDITION 1 (ed_cond_smooth)
 ed12 = uicontrol('Style', 'edit',...
@@ -347,7 +347,7 @@ ed13 = uicontrol('Style', 'edit',...
 
 % Add a text uicontrol SPECIAL CONDITION 4
 txt31 = uicontrol('Style','text','HorizontalAlignment','left','BackgroundColor',[0.9 0.91 0.92],...
-    'Position',[310 190 280 30],'String','Number of harmonics (cos) to approximate Offset factor FOR EACH LAYER (space delimiter):');
+    'Position',[310 190 280 30],'String','Number of harmonics (cos) to approximate Offset factor FOR EACH LAYER (space delimited):');
 
 % Create SPECIAL CONDITION 4 (ed_poly_decomp)
 ed31 = uicontrol('Style', 'edit',...
@@ -423,7 +423,7 @@ if length(ind_sp_xy) == 2 && sum(~isinf(ind_sp_xy) & floor(ind_sp_xy) == ind_sp_
         set(hObject,'String','22 23');
     end
 else
-    errordlg('Enter two integer numbers for X and Y coordinate with space delimiter!','Error')
+    errordlg('Enter two space delimited integer numbers for X and Y coordinate!','Error')
 end
 
 % EDIT RP XY
@@ -440,7 +440,7 @@ if length(ind_rp_xy) == 2 && sum(~isinf(ind_rp_xy) & floor(ind_rp_xy) == ind_rp_
         set(hObject,'String','24 25');
     end
 else
-    errordlg('Enter two integer numbers for X and Y coordinate with space delimiter!','Error')
+    errordlg('Enter two space delimited integer numbers for X and Y coordinate!','Error')
 end
 
 % EDIT CDP XY
@@ -457,7 +457,7 @@ if length(ind_cdp_xy) == 2 && sum(~isinf(ind_cdp_xy) & floor(ind_cdp_xy) == ind_
         set(hObject,'String','72 73');
     end
 else
-    errordlg('Enter two integer numbers for X and Y coordinate with space delimiter!','Error')
+    errordlg('Enter two space delimited integer numbers for X and Y coordinate!','Error')
 end
 
 % EDIT OFFSET
@@ -491,7 +491,7 @@ if length(ind_il_xl) == 2 && sum(~isinf(ind_il_xl) & floor(ind_il_xl) == ind_il_
         set(hObject,'String','74 75');
     end
 else
-    errordlg('Enter two integer numbers for Inline and Crossline position with space delimiter!','Error')
+    errordlg('Enter two space delimited integer numbers for Inline and Crossline position!','Error')
 end
 
 % EDIT trace to plot

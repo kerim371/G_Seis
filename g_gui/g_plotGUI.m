@@ -113,7 +113,7 @@ ed8 = uicontrol('Style', 'edit',...
 'Position', [220 95 70 30],'Enable','on');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Create push button PLOT
-btn5 = uicontrol('Style', 'pushbutton', 'String', 'PLOT IT',...
+btn5 = uicontrol('Style', 'pushbutton', 'String', 'PLOT',...
     'Position', [220 45 70 30],'FontWeight','bold',...
     'Callback', {@plot_it, hParent, ed1, ed2, ed3, ed4, ed5, ed6, ed7, ed8});
 
@@ -159,7 +159,7 @@ f1 = figure('Name','Pick secondary header 2','NumberTitle','off',...
 guidata(hParent, handles);
 g_s_key2_table(hParent, txt6, f1);
 
-% PLOT IT
+% PLOT
 function plot_it(hObject, eventdata, hParent, ed1, ed2, ed3, ed4, ed5, ed6, ed7, ed8)
 handles = guidata(hParent);
 if isempty(handles.r_file)
@@ -186,7 +186,7 @@ elseif strcmp(r_f.plot_type,'line')
     PlotFactors2D(hParent);
 end
 
-% Функция срабатывающая при нажатии на кнопку закрытия программы (крестик)
+% пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 function closereq_pkey(hObject, eventdata, hParent, txt2)
 handles = guidata(hParent);
 handles.p_key = [];
@@ -194,7 +194,7 @@ guidata(hParent,handles);
 set(txt2,'String',[]);
 delete(gcf);
 
-% Функция срабатывающая при нажатии на кнопку закрытия программы (крестик)
+% пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 function closereq_skey1(hObject, eventdata, hParent, txt4)
 handles = guidata(hParent);
 handles.s_key1 = [];
@@ -202,7 +202,7 @@ guidata(hParent,handles);
 set(txt4,'String',[]);
 delete(gcf);
 
-% Функция срабатывающая при нажатии на кнопку закрытия программы (крестик)
+% пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 function closereq_skey2(hObject, eventdata, hParent, txt6)
 handles = guidata(hParent);
 handles.s_key2 = [];

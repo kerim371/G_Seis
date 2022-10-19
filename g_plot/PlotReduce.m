@@ -156,7 +156,7 @@ classdef PlotReduce < handle
         [x_r,y_r,z_r,x,y] = reduce_to_widthKer(o.r_f, o.x, o.y, o.r_m, o.x_inds, o.y_inds, ...
             width, height, [min(o.x(end,:)) max(o.x(end,:))], [min(o.y(end,:)) max(o.y(end,:))]);
         
-        % Plot it!
+        % Plot!
         axes(o.h1_axes); % to set as GCA
         o.h_plot = imagesc(x_r,y_r,z_r);
         caxis([-mean(mean(abs(z_r),'omitnan'),'omitnan') mean(mean(abs(z_r),'omitnan'),'omitnan')]);
@@ -275,7 +275,7 @@ classdef PlotReduce < handle
                 set(o.h1_axes,'Units','Pixels');
                 set(o.sld_x,'Units','Pixels');
                 ax_pos = o.h1_axes.Position;
-                pause(10^-10); % ÁÅÇ ÏÀÓÇÛ ÍÅ ÐÀÁÎÒÀÅÒ
+                pause(10^-10); % ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 set(o.sld_x,'Position',[ax_pos(1) ax_pos(2)-21 ax_pos(3) 20]);
                 set(o.sld_y,'Position',[ax_pos(1)-21 ax_pos(2) 20 ax_pos(4)]);
                 set(o.h1_axes,'Units','Normalized');

@@ -160,22 +160,22 @@ ed1 = uicontrol('Style', 'edit',...
 
 % Add a text A*OFFSET^B+C (*OFFSET)
 txt3 = uicontrol('Style','text',...
-    'Position',[170 182.5 50 15],...
+    'Position',[170 182.5 52.5 15],...
     'String','*OFFSET^');
 
 % Create EDIT A*OFFSET^B+C (B)
 ed2 = uicontrol('Style', 'edit',...
-    'Position', [220 180 20 20],'Enable','on',...
+    'Position', [222.5 180 20 20],'Enable','on',...
     'Callback', {@ed2_equation, hParent});
 
 % Add a text A*OFFSET^B+C (+)
 txt4 = uicontrol('Style','text',...
-    'Position',[240 182.5 10 15],...
+    'Position',[242.5 182.5 10 15],...
     'String','+T');
 
 % Create EDIT A*OFFSET^B+C (C)
 ed3 = uicontrol('Style', 'edit',...
-    'Position', [250 180 30 20],'Enable','on',...
+    'Position', [252.5 180 30 20],'Enable','on',...
     'Callback', {@ed3_equation, hParent});
 
 % Add a text uicontrol to label GET HORIZON
@@ -280,7 +280,7 @@ txt14 = uicontrol('Style','text','HorizontalAlignment','left','FontWeight','bold
 % Create popup menu SC MODELS
 sc_models = {'F(i,j) = S(i)+R(j)+CONST*|i-j|';
     'F(i,j) = S(i)+R(j)+M(cdp)*|i-j|';
-    'F(i,j) = S(i)+R(j)+M(cdp))*|i-j|+G(cdp)';
+    'F(i,j) = S(i)+R(j)+M(cdp)*|i-j|+G(cdp)';
     'F(i,j) = M(cdp)*|i-j|+G(cdp)';
     'F(i,j) = S(i)+R(j)+CONST*|i-j|^2';
     'F(i,j) = S(i)+R(j)+M(cdp)*|i-j|^2';
@@ -361,7 +361,7 @@ p4 = uipanel('Title','Special Conditions','FontWeight','bold',...
 
 % Add a text uicontrol SPECIAL CONDITION 1
 txt17 = uicontrol('Style','text','HorizontalAlignment','left','BackgroundColor',[0.9 0.91 0.92],...
-    'Position',[310 270 280 30],'String','Smoothed Source and Receiver components are the same. Range of moving average window:');
+    'Position',[310 270 280 30],'String','Smoothed Source and Receiver components are equal. Moving average window length:');
 
 % Create SPECIAL CONDITION 1 (ed_cond_smooth)
 ed12 = uicontrol('Style', 'edit',...
@@ -379,7 +379,7 @@ ed13 = uicontrol('Style', 'edit',...
 
 % Add a text uicontrol SPECIAL CONDITION 4
 txt31 = uicontrol('Style','text','HorizontalAlignment','left','BackgroundColor',[0.9 0.91 0.92],...
-    'Position',[310 190 280 30],'String','Number of harmonics (cos) to approximate Offset and CDP factors. Delimiter-space:');
+    'Position',[310 190 280 30],'String','Number of harmonics (cos) to approximate Offset and CDP factors (space delimted):');
 
 % Create SPECIAL CONDITION 4 (ed_poly_decomp)
 ed31 = uicontrol('Style', 'edit',...
@@ -410,7 +410,7 @@ ed35 = uicontrol('Style', 'edit',...
     'Position', [490 130 50 15],'Enable','on',...
     'Callback', {@ed_mean_CDP, hParent});
 
-% ВЫНЕСТИ ЭТИ КНОПКИ ПОВЕРХ UIBUTTONGROUP
+% пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ UIBUTTONGROUP
 uistack([ed1 txt3 ed2 txt4 ed3 txt5 btn3 txt6 btn4 txt7 ed4 txt8 ed5 txt13 ed8]);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -447,7 +447,7 @@ end
 % EDIT SP XY
 function ed21_sp_xy(hObject, eventdata, hParent)
 ind_sp_xy = str2num(hObject.String);
-if length(ind_sp_xy) == 2 && sum(~isinf(ind_sp_xy) & floor(ind_sp_xy) == ind_sp_xy) == 2 % целые числа
+if length(ind_sp_xy) == 2 && sum(~isinf(ind_sp_xy) & floor(ind_sp_xy) == ind_sp_xy) == 2 % пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     quest = ['Do you want exchange trace header positions 22-' num2str(ind_sp_xy(1)) 'and 23-' num2str(ind_sp_xy(2))];
     answer = questdlg(quest);
     switch answer
@@ -458,13 +458,13 @@ if length(ind_sp_xy) == 2 && sum(~isinf(ind_sp_xy) & floor(ind_sp_xy) == ind_sp_
         set(hObject,'String','22 23');
     end
 else
-    errordlg('Enter two integer numbers for X and Y coordinate with space delimiter!','Error')
+    errordlg('Enter two space delimited integer numbers for X and Y coordinate!','Error')
 end
 
 % EDIT RP XY
 function ed22_rp_xy(hObject, eventdata, hParent)
 ind_rp_xy = str2num(hObject.String);
-if length(ind_rp_xy) == 2 && sum(~isinf(ind_rp_xy) & floor(ind_rp_xy) == ind_rp_xy) == 2 % целые числа
+if length(ind_rp_xy) == 2 && sum(~isinf(ind_rp_xy) & floor(ind_rp_xy) == ind_rp_xy) == 2 % пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     quest = ['Do you want exchange trace header positions 24-' num2str(ind_rp_xy(1)) 'and 25-' num2str(ind_rp_xy(2))];
     answer = questdlg(quest);
     switch answer
@@ -475,13 +475,13 @@ if length(ind_rp_xy) == 2 && sum(~isinf(ind_rp_xy) & floor(ind_rp_xy) == ind_rp_
         set(hObject,'String','24 25');
     end
 else
-    errordlg('Enter two integer numbers for X and Y coordinate with space delimiter!','Error')
+    errordlg('Enter two space delimited integer numbers for X and Y coordinate!','Error')
 end
 
 % EDIT CDP XY
 function ed23_cdp_xy(hObject, eventdata, hParent)
 ind_cdp_xy = str2num(hObject.String);
-if length(ind_cdp_xy) == 2 && sum(~isinf(ind_cdp_xy) & floor(ind_cdp_xy) == ind_cdp_xy) == 2 % целые числа
+if length(ind_cdp_xy) == 2 && sum(~isinf(ind_cdp_xy) & floor(ind_cdp_xy) == ind_cdp_xy) == 2 % пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     quest = ['Do you want exchange trace header positions 72-' num2str(ind_cdp_xy(1)) 'and 73-' num2str(ind_cdp_xy(2))];
     answer = questdlg(quest);
     switch answer
@@ -492,13 +492,13 @@ if length(ind_cdp_xy) == 2 && sum(~isinf(ind_cdp_xy) & floor(ind_cdp_xy) == ind_
         set(hObject,'String','72 73');
     end
 else
-    errordlg('Enter two integer numbers for X and Y coordinate with space delimiter!','Error')
+    errordlg('Enter two space delimited integer numbers for X and Y coordinate!','Error')
 end
 
 % EDIT OFFSET
 function ed24_offset(hObject, eventdata, hParent)
 ind_offset = str2num(hObject.String);
-if length(ind_offset) == 1 && sum(~isinf(ind_offset) & floor(ind_offset) == ind_offset) == 1 % целые числа
+if length(ind_offset) == 1 && sum(~isinf(ind_offset) & floor(ind_offset) == ind_offset) == 1 % пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     quest = ['Do you want exchange trace header positions 72-' num2str(ind_offset) '?'];
     answer = questdlg(quest);
     switch answer
@@ -515,7 +515,7 @@ end
 % EDIT IL XL
 function ed25_il_xl(hObject, eventdata, hParent)
 ind_il_xl = str2num(hObject.String);
-if length(ind_il_xl) == 2 && sum(~isinf(ind_il_xl) & floor(ind_il_xl) == ind_il_xl) == 2 % целые числа
+if length(ind_il_xl) == 2 && sum(~isinf(ind_il_xl) & floor(ind_il_xl) == ind_il_xl) == 2 % пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     quest = ['Do you want exchange trace header positions 74-' num2str(ind_il_xl(1)) 'and 75-' num2str(ind_il_xl(2))];
     answer = questdlg(quest);
     switch answer
@@ -526,7 +526,7 @@ if length(ind_il_xl) == 2 && sum(~isinf(ind_il_xl) & floor(ind_il_xl) == ind_il_
         set(hObject,'String','74 75');
     end
 else
-    errordlg('Enter two integer numbers for Inline and Crossline position with space delimiter!','Error')
+    errordlg('Enter two space delimited integer numbers for Inline and Crossline position!','Error')
 end
 
 % EDIT trace to plot
@@ -998,7 +998,7 @@ g_decomposition_amp(hParent);
 
 set(hObject,'str','RUN','backg',[0.94 0.94 0.94])  % Now reset the button features.
 
-% Функция срабатывающая при нажатии на кнопку закрытия программы (крестик)
+% пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 function trc_closereq(hObject, eventdata, hParent, ed25, btn21, btn22)
 if isvalid(hParent)
     handles = guidata(hParent);
@@ -1014,7 +1014,7 @@ if isvalid(hParent)
 end
 delete(gcf);
 
-% Функция срабатывающая при нажатии на кнопки стрелка влево/вправо
+% пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅ
 function trc_keyPress(hObject, eventdata, hParent, ed25)
 switch eventdata.Key
     case 'leftarrow'

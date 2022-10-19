@@ -79,7 +79,7 @@ last_height = height;
 last_xlims  = [-inf inf];
 last_ylims  = [-inf inf];
 
-% Plot it!
+% Plot!
 if size(x,1) == 2
     axes(h1_axes); % to set as GCA
     h_plot = plot(x(end,:),y);
