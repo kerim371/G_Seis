@@ -15,8 +15,10 @@ Functionality
 
 Usage
 -----
-The main file is G_Seis.m Before running the application you should:
+The main file is **G_Seis.m** 
+
+Before running the application one should:
 
 #. set path to the root folder and include all the folders inside it
-#. build mex function in /g_other folder. Commands >> mex -setup and >> mex typecastx.c (or >> mex g_other/typecastx.c depending on current path) may help
-#. run the app: >> G_Seis
+#. build mex function in /g_other folder. Commands **>> mex -setup** and **>> mex typecastx.c** (or **>> mex g_other/typecastx.c** depending on current path) may help
+#. run the app: **>> G_Seis**

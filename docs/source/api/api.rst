@@ -1,6 +1,8 @@
 API
 ===
 
+API is presented for each GUI window
+
 .. toctree::
    :caption: Content
    :maxdepth: 2
