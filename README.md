@@ -20,6 +20,9 @@ Before running the application you should:
 2) build mex function in /g_other folder. Commands `>> mex -setup` and `>> mex typecastx.c` (or `>> mex g_other/typecastx.c` depending on current path) may help
 3) run the app: `>> G_Seis`
 
+[Documentation](https://g-seis.readthedocs.io/en/latest/?badge=latest)
+
+
 [mathworks-fileexchange-img]:https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg
 [mathworks-fileexchange-status]:https://fr.mathworks.com/matlabcentral/fileexchange/71869-g_seis
 
